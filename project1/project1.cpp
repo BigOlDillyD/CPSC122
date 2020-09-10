@@ -6,6 +6,11 @@ Team Member 2: None
 Submitted By: Nathan Mautz
 GU Username: nmautz
 File Name: project1.cpp
+Program accepts 3 parameters, the number of primes to be generated, the number of columns, and the name of the output file
+
+To Build: g++ project1.cpp -o project1
+To Execute: ./project1
+
 */
 
 
