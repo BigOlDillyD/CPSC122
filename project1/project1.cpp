@@ -18,7 +18,7 @@ File Name: project1.cpp
 
 
 
-bool isPrime(int num){
+bool IsPrime(int num){
 
 	
 
@@ -41,7 +41,7 @@ bool isPrime(int num){
 
 
 
-int* generatePrimeNumbers(int count){ 
+int* GeneratePrimeNumbers(int count){ 
 	
 	//Creates int array of size count on the heap
 	int *primeNums = new int[count];
@@ -64,7 +64,7 @@ int* generatePrimeNumbers(int count){
 		while(!found){
 
 			num = rand()%100;
-			if(isPrime(num)){
+			if(IsPrime(num)){
 				found = true;
 				primeNums[i] = num;
 			}
@@ -78,14 +78,14 @@ int* generatePrimeNumbers(int count){
 
 
 
-void printPrimeNums(int count, int columns, std::ofstream& outputFile){
+void PrintPrimeNums(int count, int columns, std::ofstream& outputFile){
 	
 	
 	
 	int index = 0;
 	int columnIndex = 0;
 
-	int *primeNums = generatePrimeNumbers(count);
+	int *primeNums = GeneratePrimeNumbers(count);
 	
 	while(index < count){
 	
@@ -136,7 +136,7 @@ int main(int argc, char* argv[]){
 	outputFile.open(argv[3]);
 	  	
 
-  	printPrimeNums(std::stoi(argv[1]), std::stoi(argv[2]), outputFile);
+  	PrintPrimeNums(std::stoi(argv[1]), std::stoi(argv[2]), outputFile);
   	
   
 	
