@@ -1,16 +1,5 @@
 
 #include <iostream>
-namespace test
-{
-
-	void print(std::string x)
-	{
-		std::cout << x << std::endl;
-
-
-	}
-
-}
 
 
 

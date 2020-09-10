@@ -5,9 +5,10 @@ int main()
 {
 
 	std::cout << add(1,2) << std::endl;
-
-	test::print("hwevbfjednwk;l';jhig");
-
+	
+	Date birthday = {9,20,2001};
+	
+	test::print(birthday.day);
 	return 0;
 	
 }
