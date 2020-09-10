@@ -117,9 +117,39 @@ void PrintPrimeNums(int count, int columns, std::ofstream& outputFile){
 
 
 }
+	
 
 
 
+int* GetInput()
+{
+	int *input = new int[2];
+
+	std::cout << "How many prime numbers would you like to generate" << std::endl;
+	
+	while(std::cin >> input[0], std::cin.fail())
+	{
+		std::cout << "Input Error" << std::endl;
+
+		std::cin.clear();
+		std::cin.ignore(10000, '\n');
+	}	
+	
+	
+	std::cout << "How many columns would you like?" << std::endl;
+	
+	while(std::cin >> input[1], std::cin.fail())
+	{
+		std::cout << "Input Error" << std::endl;
+
+		std::cin.clear();
+		std::cin.ignore(10000, '\n');
+
+	}	
+
+	return input;
+
+}
 
 
 int main(int argc, char* argv[]){
@@ -127,23 +157,22 @@ int main(int argc, char* argv[]){
 	
 	
 	
-	if(argc != 4){
+	if(argc != 2){
 		std::cout << "Incorrect count of arguments given: " << argc << std::endl;
 		return 0;
 	
 	
 	}
 	
-	
-	
-	
+	int *input = GetInput();	
+		
 	std::ofstream outputFile;
-	outputFile.open(argv[3]);
+	outputFile.open(argv[1]);
 	  	
 
-  	PrintPrimeNums(std::stoi(argv[1]), std::stoi(argv[2]), outputFile);
+  	PrintPrimeNums(input[0], input[1], outputFile);
   	
-  
+  	delete[] input;
 	
 	outputFile.close();
 
