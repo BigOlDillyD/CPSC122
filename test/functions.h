@@ -2,10 +2,16 @@
 #include <iostream>
 namespace test
 {
+	void print(std::string);
 
-	print(std::string);
+	struct info
+	{
+
+		
 
 
+
+	}
 }
 
 
