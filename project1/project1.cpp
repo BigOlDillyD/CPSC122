@@ -48,11 +48,19 @@ int* generatePrimeNumbers(int count){
 	
 	//Seeds random number generator
 	srand(time(0));
+	
 
 	int num = 0;
+	
+	
+	//Generates prime numbers
 	for(int i = 0; i < count; i++){
 		
 		bool found = false;
+
+		//Generates a random number, then checks if said number is prime.
+		//If that number is prime, it is added to the primeNums array
+		//the boolean "found" is then set to true so the loop can end.
 		while(!found){
 
 			num = rand()%100;
