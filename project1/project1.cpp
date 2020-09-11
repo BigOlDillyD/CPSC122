@@ -82,7 +82,12 @@ int* GeneratePrimeNumbers(int count){
 }
 
 
+/*
+Pre: count, and columns are positive, non-0 numbers
 
+Post: Specified amount of prime numbers will be put in specified amount of columns and will be writen to outputFile
+
+*/
 void PrintPrimeNums(int count, int columns, std::ofstream& outputFile){
    
    
