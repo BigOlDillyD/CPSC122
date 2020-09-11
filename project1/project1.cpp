@@ -68,7 +68,7 @@ int* GeneratePrimeNumbers(int count){
 
       while(!found){
 
-         num = rand()%100;
+         num = rand()%100; 
          if(is_prime(num)){
             found = true;
             primeNums[i] = num;
@@ -146,26 +146,20 @@ int* GetInput()
 }
 
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[])
+{   
 
-   
-   
-   
    if(argc != 2){
       std::cout << "Incorrect count of arguments given: " << argc << ". Please specify the file name." <<  std::endl;
-      return 0;
-   
-   
+      exit(EXIT_FAILURE);  
    }
    
    int *input = GetInput();   
       
    std::ofstream outputFile;
    outputFile.open(argv[1]);
-      
-
-   PrintPrimeNums(input[0], input[1], outputFile);
-   
+ 
+   PrintPrimeNums(input[0], input[1], outputFile);  
    delete[] input;
    
    outputFile.close();
