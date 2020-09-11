@@ -11,6 +11,8 @@ Program accepts 3 parameters, the number of primes to be generated, the number o
 To Build: g++ project1.cpp -o project1
 To Execute: ./project1
 
+My algotithm for is_prime checks divides num by every number between 1 and (num/2)
+This is much more efficient than checking every number between 1 and num
 */
 
 
