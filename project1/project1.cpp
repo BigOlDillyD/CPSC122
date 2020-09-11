@@ -24,7 +24,7 @@ To Execute: ./project1
 Pre: Integer is passed as argument
 Post: Program will return true if num is prime, and false if num is not prime.
 */
-bool IsPrime(int num){
+bool is_prime(int num){
 
 
 
@@ -69,7 +69,7 @@ int* GeneratePrimeNumbers(int count){
       while(!found){
 
          num = rand()%100;
-         if(IsPrime(num)){
+         if(is_prime(num)){
             found = true;
             primeNums[i] = num;
          }
@@ -121,7 +121,7 @@ void PrintPrimeNums(int count, int columns, std::ofstream& outputFile){
 Pre: None
 Post: Will return pointer to array of integers that hold the users input
 */
-   
+  
 int* GetInput()
 {
    int *input = new int[2];
