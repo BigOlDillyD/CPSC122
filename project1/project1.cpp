@@ -70,7 +70,7 @@ int* GeneratePrimeNumbers(int count){
 
       while(!found){
 
-         num = rand()%100; 
+         num = rand(); 
          if(is_prime(num)){
             found = true;
             primeNums[i] = num;
