@@ -2,11 +2,25 @@
 #include <fstream>
 
 
-char encrypt(char ch, int shift);
+char encrypt(char ch, int shift)
+{
+
+   int ich = (int)ch;
+
+   ich = ich - (int)'A';
+
+   ich = (ich + shift)%26;
+
+   ich += (int)'A';
+
+   return ich;
+
+
+}
 
 char decrypt(char ch, int shift);
 
-void parseFile(std::ifstream& fin, std::ofstream& fout)
+void parseFile(std::ifstream& fin, std::ofstream& fout, int shift)
 {
    while(fin.peek() != EOF)
    {
@@ -14,7 +28,7 @@ void parseFile(std::ifstream& fin, std::ofstream& fout)
 
       if(isalpha(ch))
       {
-         fout << (char)toupper(ch);
+         fout << encrypt((char)toupper(ch),shift);
       
       }else
       {
@@ -38,8 +52,8 @@ int main(int argc, char* argv[])
    fin.open(argv[1]);
    fout.open(argv[2]);
 
-   parseFile(fin, fout);   
-
+   parseFile(fin, fout, atoi(argv[4]));   
+   //std::cout << atoi(argv[4]) << std::endl;
 
    fin.close();
    fout.close();
