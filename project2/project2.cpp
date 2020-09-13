@@ -18,7 +18,21 @@ char encrypt(char ch, int shift)
 
 }
 
-char decrypt(char ch, int shift);
+char decrypt(char ch, int shift)
+{
+   int ich = (int)ch;
+
+   ich = ich - (int)'A';
+
+   ich = (ich - shift+26)%26;
+
+   ich += (int)'A';
+
+   return ich;
+
+
+
+}
 
 void parseFile(std::ifstream& fin, std::ofstream& fout, int shift)
 {
@@ -51,8 +65,19 @@ int main(int argc, char* argv[])
    
    fin.open(argv[1]);
    fout.open(argv[2]);
+   
+   if(argv[3] == 0)
+   {
+      parseFile(fin, fout, atoi(argv[4])); 
 
-   parseFile(fin, fout, atoi(argv[4]));   
+   }else if(argv[3] == 1)
+   {
+      
+
+   }
+
+
+     
    //std::cout << atoi(argv[4]) << std::endl;
 
    fin.close();
