@@ -1,3 +1,18 @@
+/*
+Class: CPSC 122
+Section: 01
+Team Member 1: Nathan Mautz
+Team Member 2: None
+Submitted By: Nathan Mautz
+GU Username: nmautz
+File Name: project2.cpp
+
+Program will accept 4 parameter, a file used for input, a name for the output file, a mode(0 or 1), and a shift (1-25). The program will then either encrypt or decrypt the input file using the shift as the key, and put the transformed message in a file with a givin name
+
+To Build: g++ project2.cpp -o project2
+To Execute: ./project2 inputFile outputFile mode shift
+*/
+
 #include <iostream>
 #include <fstream>
 
