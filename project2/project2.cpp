@@ -16,7 +16,13 @@ To Execute: ./project2 inputFile outputFile mode shift
 #include <iostream>
 #include <fstream>
 
+/*
+pre: ch is the character to be encoded
+shift is an integer in the range [1,25]
 
+Post: returns an encrypted character
+
+*/
 char encrypt(char ch, int shift)
 {
 
@@ -33,6 +39,15 @@ char encrypt(char ch, int shift)
 
 }
 
+/*
+pre: ch is the character to be decoded
+shift is an integer in the range [1,25]
+
+Post: returns a decrypted character
+
+*/
+
+   
 char decrypt(char ch, int shift)
 {
    int ich = (int)ch;
