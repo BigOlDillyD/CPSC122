@@ -63,7 +63,11 @@ char decrypt(char ch, int shift)
 
 
 }
+/*
+Pre: shift is an intager in the range [1,25]
 
+Post: File "fout" will contain the encrypted file
+*/
 void encryptFile(std::ifstream& fin, std::ofstream& fout, int shift)
 {
    while(fin.peek() != EOF)
@@ -86,7 +90,11 @@ void encryptFile(std::ifstream& fin, std::ofstream& fout, int shift)
    fout << std::endl;
 
 }
+/*
+Pre: shift is an intager in the range [1,25]
 
+Post: File "fout" will contain the decrypted file
+*/
 void decryptFile(std::ifstream& fin, std::ofstream& fout, int shift)
 {
 
@@ -128,9 +136,6 @@ int main(int argc, char* argv[])
 
    }
 
-
-     
-   //std::cout << atoi(argv[4]) << std::endl;
 
    fin.close();
    fout.close();
