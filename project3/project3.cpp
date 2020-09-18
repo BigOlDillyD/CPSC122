@@ -140,6 +140,27 @@ void checkInput(int argc, char* argv[])
 
 }
 
+
+
+
+int* readMultInvFile(char* fileName)
+{
+   int* multHash = new int[26];
+   std::ifstream fin;
+   fin.open(fileName);
+   int i = 0;
+   while(fin.peak() != EOF)
+   {
+      multHash[i] = fin.get
+
+
+   }
+
+
+   fin.close(); 
+}
+
+
 int main(int argc, char* argv[])
 {
    checkInput(argc, argv);
