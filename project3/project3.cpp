@@ -45,9 +45,19 @@ int* readMultInvFile(char* fileName)
 
 
 
-char encrypt(char ch, int alpha, int beta)
+char encrypt(char ch, int alpha, int beta, char* fileName)
 {
-
+   int* hashTable = readMultInvFile(fileName);
+   
+   if(hashTable[alpha] == -1)
+   {
+      std::cout << "Alpha has no multiplicative inverse" << std::endl;
+      delete[] hashTable;
+      exit(EXIT_FAILURE);
+   }
+   
+   delete[] hashTable;
+   
    int ich = (int)ch;
 
    ich = ich - (int)'A';
@@ -75,6 +85,19 @@ char decrypt(char ch, int alpha, int beta, char* fileName)
    int* hashTable = readMultInvFile(fileName);
    
    int multInv = hashTable[alpha];
+   
+
+   delete[] hashTable;
+   
+
+   if(multInv == -1)
+   {
+      std::cout << "Alpha has no multiplicative inverse" << std::endl;
+      exit(EXIT_FAILURE);
+
+   }
+
+
    int ich = (int)ch;
 
    ich = ich - (int)'A';
@@ -82,8 +105,6 @@ char decrypt(char ch, int alpha, int beta, char* fileName)
    ich = ((multInv * ich) - (multInv * beta)+26)%26;
 
    ich += (int)'A';
-
-   delete[] hashTable;
 
    return ich;
 
@@ -95,7 +116,7 @@ Pre: beta is an intager in the range [1,25]
 
 Post: File "fout" will contain the encrypted file
 */
-void encryptFile(std::ifstream& fin, std::ofstream& fout, int alpha, int beta)
+void encryptFile(std::ifstream& fin, std::ofstream& fout, int alpha, int beta, char* fileName)
 {
    while(fin.peek() != EOF)
    {
@@ -103,7 +124,7 @@ void encryptFile(std::ifstream& fin, std::ofstream& fout, int alpha, int beta)
 
       if(isalpha(ch))
       {
-         fout << encrypt((char)toupper(ch), alpha, beta);
+         fout << encrypt((char)toupper(ch), alpha, beta, fileName);
       
       }else
       {
@@ -181,7 +202,7 @@ int main(int argc, char* argv[])
    
    if(argv[4][0] == '0')
    {
-      encryptFile(fin, fout, atoi(argv[5]), atoi(argv[6])); 
+      encryptFile(fin, fout, atoi(argv[5]), atoi(argv[6]), argv[3]); 
 
    }else if(argv[4][0] == '1')
    {
