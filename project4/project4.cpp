@@ -1,6 +1,6 @@
 #include <iostream>
 
-void swap(int arr[6][2], int a, int b)
+void swap(int arr[26][2], int a, int b)
 {
    int tmp[2];
    
@@ -16,11 +16,11 @@ void swap(int arr[6][2], int a, int b)
 }
 
 
-int findSmallest(int arr[6][2], int start)
+int findSmallest(int arr[26][2], int start)
 {
    int smallest = start;
    
-   for(int i = start + 1; i < 6; i++)
+   for(int i = start + 1; i < 26; i++)
    {
       if(arr[i][0] < arr[smallest][0])
       {
@@ -33,22 +33,29 @@ int findSmallest(int arr[6][2], int start)
 }
 
 
-
-
-
-void genArray(int arr[6][2])
+void selectionSort(int arr[26][2])
 {
-   for(int i = 0; i < 6; i++)
+
+   int start = 0;
+   
+   while(start < 25)
    {
-      arr[i][0] = i;
-      arr[i][1] = 6 - i;
+      int smallest = findSmallest(arr,start);
+      if(smallest != start)
+         swap(arr,smallest,start);
 
-
+      start++;
    }
+}
 
 
-
-
+void genArray(int arr[26][2])
+{
+   for(int i = 0; i < 26; i++)
+   {
+      arr[i][0] = 26 - i;
+      arr[i][1] = i;
+   }
 }
 
 
@@ -57,11 +64,25 @@ void genArray(int arr[6][2])
 int main(int argc, char* argv[])
 {
 
-   int arr[6][2];
+   int arr[26][2];
    genArray(arr);
-   arr[4][0] = -3;
-   int smallest = findSmallest(arr, 0);
-   std::cout << smallest << std::endl;
+ 
    
+   for(int i = 0; i < 26; i++)
+   {
+      std::cout << arr[i][0] << " " << arr[i][1] << std::endl;
+   }
+
+   std::cout << "===========================" << std::endl;
+   selectionSort(arr);
+   
+ 
+   
+   for(int i = 0; i < 26; i++)
+   {
+      std::cout << arr[i][0] << " " << arr[i][1] << std::endl;
+   }
+
+
    return 0;
 }
