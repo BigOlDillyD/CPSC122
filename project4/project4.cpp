@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <ctime>
+#include <fstream>
 void swap(int arr[26][2], int a, int b)
 {
    int tmp[2];
@@ -49,39 +50,62 @@ void selectionSort(int arr[26][2])
 }
 
 
-void genArray(int arr[26][2])
+
+void arrayToFile(int key[26], char* fileName)
 {
+   std::ofstream fout;
+   fout.open(fileName);
+
    for(int i = 0; i < 26; i++)
-   {
-      arr[i][0] = 26 - i;
-      arr[i][1] = i;
-   }
+      fout << key[i] << std::endl; 
+   fout.close();
+
 }
 
 
 
+void key_gen(int key[26], char* fileName)
+{
+   for(int i = 0; i < 26; i++)
+      key[i] = -1;
+   
+
+   std::srand(time(0));
+   for(int i = 0; i < 26; i++)
+   {
+      bool found = false;
+      
+      while(!found)
+      {
+         int index = std::rand()%26;
+         if(key[index] == -1)
+         {
+            key[index] = i;
+            found = true; 
+         } 
+
+      }
+   }
+   arrayToFile(key, fileName);
+}
+
 
 int main(int argc, char* argv[])
 {
-
-   int arr[26][2];
-   genArray(arr);
- 
    
-   for(int i = 0; i < 26; i++)
+   
+   int key[26];
+
+   key_gen(key, argv[1]);
+
+
+   for(int i = 0; i <26; i++)
    {
-      std::cout << arr[i][0] << " " << arr[i][1] << std::endl;
+      std::cout << key[i] << std::endl;
    }
 
-   std::cout << "===========================" << std::endl;
-   selectionSort(arr);
-   
- 
-   
-   for(int i = 0; i < 26; i++)
-   {
-      std::cout << arr[i][0] << " " << arr[i][1] << std::endl;
-   }
+
+
 
 
    return 0;
