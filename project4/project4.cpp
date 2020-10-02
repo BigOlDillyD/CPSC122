@@ -1,6 +1,108 @@
 #include <iostream>
 #include <ctime>
 #include <fstream>
+
+void swap(int[26][2], int, int);
+
+int findSmallest(int[26][2], int);
+
+void selectionSort(int[26][2]);
+
+void arrayToFile(int[26], char*);
+
+void key_gen(char*);
+
+void readKeyFromFile(int[26][2], char*, int);
+
+char transform(char, int[26][2]);
+
+void transformFile(char*, char*, int[26][2]);
+
+int main(int argc, char* argv[])
+{
+
+   if(argc == 2)
+   {
+      key_gen(argv[1]);
+      return 0;
+
+   }
+
+   int key[26][2];
+   
+   readKeyFromFile(key, argv[3], atoi(argv[4]));
+  
+   
+   if(atoi(argv[4]) == 1)
+      selectionSort(key);
+
+   
+   transformFile(argv[1],argv[2], key);
+ 
+   return 0;
+}
+
+void transformFile(char* input, char* output, int key[26][2])
+{
+
+   std::ifstream fin;
+   std::ofstream fout;
+
+   fin.open(input);
+   fout.open(output);
+
+   while(fin.peek() != EOF)
+   {
+      char ch = fin.get();
+      if(isalpha(ch))
+         ch = transform(ch, key);
+      fout << ch;
+
+
+   }
+
+
+   fin.close();
+   fout.close();
+
+
+
+
+}
+
+
+
+char transform(char ch, int key[26][2])
+{
+   ch = toupper(ch);
+   int iCH = ch - 'A';
+   
+   
+
+   return (char)(key[iCH][1]+'A');
+
+
+}
+
+void readKeyFromFile(int key[26][2], char* fileName, int mode)
+{
+   for(int i = 0; i < 26; i++)
+      key[i][mode] = i;
+
+
+   std::ifstream fin;
+   fin.open(fileName);
+
+   for(int i = 0; i < 26; i++)
+   {
+      fin >> key[i][1-mode];
+   } 
+   
+   fin.close();
+
+}
+
+
 void swap(int arr[26][2], int a, int b)
 {
    int tmp[2];
@@ -33,7 +135,6 @@ int findSmallest(int arr[26][2], int start)
    return smallest;
 }
 
-
 void selectionSort(int arr[26][2])
 {
 
@@ -49,8 +150,6 @@ void selectionSort(int arr[26][2])
    }
 }
 
-
-
 void arrayToFile(int key[26], char* fileName)
 {
    std::ofstream fout;
@@ -62,10 +161,9 @@ void arrayToFile(int key[26], char* fileName)
 
 }
 
-
-
-void key_gen(int key[26], char* fileName)
+void key_gen(char* fileName)
 {
+   int key[26];
    for(int i = 0; i < 26; i++)
       key[i] = -1;
    
@@ -90,23 +188,4 @@ void key_gen(int key[26], char* fileName)
 }
 
 
-int main(int argc, char* argv[])
-{
-   
-   
-   int key[26];
 
-   key_gen(key, argv[1]);
-
-
-   for(int i = 0; i <26; i++)
-   {
-      std::cout << key[i] << std::endl;
-   }
-
-
-
-
-
-   return 0;
-}
