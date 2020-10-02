@@ -2,6 +2,16 @@
 #include <ctime>
 #include <fstream>
 
+
+
+
+/*
+Pre:
+
+Post:
+*/
+
+
 void swap(int[26][2], int, int);
 
 int findSmallest(int[26][2], int);
@@ -42,6 +52,12 @@ int main(int argc, char* argv[])
    return 0;
 }
 
+
+/*
+Pre: input is the input file, output is the outputfile, key is filled with no duplicates and sorted.
+
+Post: File is created with the transformed text
+*/
 void transformFile(char* input, char* output, int key[26][2])
 {
 
@@ -72,6 +88,11 @@ void transformFile(char* input, char* output, int key[26][2])
 
 
 
+/*
+Pre: ch is the character to be transformed, key is filled with no duplicates and sorted.
+
+Post: returns the transformed character.
+*/
 char transform(char ch, int key[26][2])
 {
    ch = toupper(ch);
@@ -84,6 +105,13 @@ char transform(char ch, int key[26][2])
 
 }
 
+
+
+/*
+Pre: Key is the key, fileName is the name of the file to be read from, mode is an int 0 or 1
+
+Post: Fills key with no duplicates, unsorted
+*/
 void readKeyFromFile(int key[26][2], char* fileName, int mode)
 {
    for(int i = 0; i < 26; i++)
@@ -103,6 +131,11 @@ void readKeyFromFile(int key[26][2], char* fileName, int mode)
 }
 
 
+/*
+Pre: arr is a filled array, a is the index to be swapped, b is the other index to be swapped.
+
+Post: Swapps contents at arr[a] with contents at arr[b], taking into account the 2D array
+*/
 void swap(int arr[26][2], int a, int b)
 {
    int tmp[2];
@@ -119,6 +152,11 @@ void swap(int arr[26][2], int a, int b)
 }
 
 
+/*
+Pre: arr is a filled array, start is where the function should start searcing
+
+Post: Returns the index of the smalles value in the array from start.
+*/
 int findSmallest(int arr[26][2], int start)
 {
    int smallest = start;
@@ -135,6 +173,11 @@ int findSmallest(int arr[26][2], int start)
    return smallest;
 }
 
+/*
+Pre: arr is a filled array
+
+Post: arr is sorted
+*/
 void selectionSort(int arr[26][2])
 {
 
@@ -150,6 +193,11 @@ void selectionSort(int arr[26][2])
    }
 }
 
+/*
+Pre:
+
+Post:
+*/
 void arrayToFile(int key[26], char* fileName)
 {
    std::ofstream fout;
