@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <fstream>
-
+#include "TransCypher.h"
 /*
 Class: CPSC 122
 Section: 01
