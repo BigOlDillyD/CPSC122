@@ -3,10 +3,25 @@
 #include <fstream>
 
 /*
-Pre:
+Class: CPSC 122
+Section: 01
+Team Member 1: Nathan Mautz
+Team Member 2: None
+Submitted By: Nathan Mautz
+GU Username: nmautz
+File Name: project4.cpp
 
-Post:
+Program can follow 2 seperate paths. If 1 argument is passed(excluding executable name) then the program will create a file containing a key. 
+
+If 4 arguments are passed, then the program will either encrypt or decrypt the inputFile and save the results in the outputFile
+
+To Build: g++ project4.cpp -o project4
+To Execute:
+./project4 inputFile outputFile keyFile mode
+OR
+./project4 keyFileName
 */
+
 
 
 void swap(int[26][2], int, int);
