@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 class TransCypher
 {
 
@@ -11,28 +10,11 @@ class TransCypher
        
       void key_gen(char*);
 
-      void transformFile()
-      {
+      void transformFile();
 
-         std::ifstream fin;
-         std::ofstream fout;
-
-         fin.open(inputFileName);
-         fout.open(outputFileName);
-
-         while(fin.peek() != EOF)
-         {
-            char ch = fin.get();
-            if(isalpha(ch))
-            ch = transform(ch, key);
-            fout << ch;
-         }     
-         fin.close();
-         fout.close();
-      }     
-
+      char transform(char, int[26][2]);
+      
       void readKeyFromFile(int[26][2], char*, int);
-
      
    private:
       
@@ -44,10 +26,6 @@ class TransCypher
       
       char* outputFileName;
 
-           
-      char transform(char, int[26][2]);
-
-
       void selectionSort(int[26][2]);
 
       void swap(int[26][2], int, int);
@@ -56,13 +34,7 @@ class TransCypher
 
       void arrayToFile(int[26], char*);
      
-      
-
-     
 };
-
-
-
 
 
 
