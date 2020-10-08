@@ -1,26 +1,31 @@
-#pragma once
+#ifndef _TransCypher_h_
+#define _TransCypher_h_
 
+#include <ctime>
+#include <fstream>
 
 class TransCypher
 {
 
 
    public:
-      TransCypher(char*, char*, int);
+      TransCypher(char*, char*, char*, int);
        
-      void key_gen(char*);
+      void key_gen();
 
       void transformFile();
 
-      char transform(char, int[26][2]);
+      char transform(char);
       
-      void readKeyFromFile(int[26][2], char*, int);
+      void readKeyFromFile();
      
    private:
       
       int key[26][2];
       
       int mode;
+
+      char* keyFileName;
 
       char* inputFileName;
       
@@ -32,12 +37,12 @@ class TransCypher
 
       int findSmallest(int[26][2], int);
 
-      void arrayToFile(int[26], char*);
+      void arrayToFile();
      
 };
 
 
 
-
+#endif
 
 
