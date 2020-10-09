@@ -11,9 +11,16 @@ class LinkedList
 
       LinkedList()
       {
-         this->length = 1;
+         this->length = 0;
    
          firstNode = new node<T>();
+
+      }
+      
+      LinkedList(const LinkedList<T> &other)
+      {
+//         other.getLength();         
+
 
       }
 
@@ -38,7 +45,15 @@ class LinkedList
       }
 
       void add(T data)
-      {
+      {  
+
+         if(length == 0)
+         {
+            set(0,data);
+            length++;
+            return;
+         }
+       
          node<T>* currentNode = getNode(length-1);
      
          currentNode->next = new node<T>();
@@ -51,7 +66,7 @@ class LinkedList
       }
      
 
-      T get(int index)
+      T get(int index) const
       {
          
          node<T>* currentNode = getNode(index);
@@ -65,20 +80,30 @@ class LinkedList
 
       void remove(int index)
       {
+         std::cout << "Index: " << index << std::endl;
          node<T>* toRemove = getNode(index);
          node<T>* before = getNode(index-1);
-         
+         std::cout << "Check 1" << std::endl; 
          before->next = toRemove->next;
-
+         std::cout << "Check 3" << std::endl;
          delete[] toRemove;
+         std::cout << "Check 4" << std::endl;
+
          length--;
       }
-      
-      
+ 
+      int getLength() const
+      {
+
+         return length;
+
+      }
+     
+       
 
 
    private:
-      node<T>* getNode(int index)
+      node<T>* getNode(int index) const
       {
          node<T>* currentNode = firstNode;
                

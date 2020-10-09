@@ -8,7 +8,7 @@ int main(int argc, char** argv)
 
    LinkedList<int> list;
 
-   list.set(0,5);
+   list.add(5);
 
    list.add(500);
 
@@ -18,9 +18,11 @@ int main(int argc, char** argv)
 
    std::cout << list.get(0) << " "  << list.get(1) << " " << list.get(2) << " " << list.get(3) << std::endl;   
    
-   list.remove(1);
+   LinkedList<int> list2 = list;
+
+   list.remove(3);
   
-   std::cout << list.get(0) << " "  << list.get(1) << " " << list.get(2) << std::endl;
+//   std::cout << list.get(0) << " "  << list.get(1) << " " << list.get(2) << std::endl;
    
    return 0;
 }
