@@ -17,11 +17,12 @@ class LinkedList
 
       }
       
-      LinkedList(const LinkedList<T> &other)
+      LinkedList(const LinkedList<T>& other)
       {
-//         other.getLength();         
+         firstNode = new node<T>();
 
-
+         for(int i = 0; i < other.getLength(); i++)
+            add(other.get(i));
       }
 
       ~LinkedList()
@@ -80,14 +81,25 @@ class LinkedList
 
       void remove(int index)
       {
-         std::cout << "Index: " << index << std::endl;
+         
+         if(index == 0){
+            node<T>* tmp = firstNode;
+
+            firstNode = firstNode->next;
+
+            delete[] tmp;
+            length--;
+            return;
+
+         }
+         
          node<T>* toRemove = getNode(index);
          node<T>* before = getNode(index-1);
-         std::cout << "Check 1" << std::endl; 
+
          before->next = toRemove->next;
-         std::cout << "Check 3" << std::endl;
+
          delete[] toRemove;
-         std::cout << "Check 4" << std::endl;
+
 
          length--;
       }

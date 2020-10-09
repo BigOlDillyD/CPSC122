@@ -20,9 +20,13 @@ int main(int argc, char** argv)
    
    LinkedList<int> list2 = list;
 
-   list.remove(3);
+   
+
+   
+
+   list.remove(0);
   
-//   std::cout << list.get(0) << " "  << list.get(1) << " " << list.get(2) << std::endl;
+   std::cout << list.get(0) << " "  << list.get(1) << " " << list.get(2) << std::endl;
    
    return 0;
 }
