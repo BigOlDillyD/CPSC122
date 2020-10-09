@@ -17,8 +17,14 @@ class LinkedList
 
       }
 
+      ~LinkedList()
+      {
+         while(length > 1)
+            remove(length-1); 
+        
+         delete[] firstNode;
 
-
+      }
 
 
       void set(int index, T data)
