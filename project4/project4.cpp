@@ -1,12 +1,23 @@
 #include <iostream>
 #include <ctime>
 #include <fstream>
-
 /*
-Pre:
+Class: CPSC 122
+Section: 01
+Team Member 1: Nathan Mautz
+Team Member 2: None
+Submitted By: Nathan Mautz
+GU Username: nmautz
+File Name: project4.cpp
 
-Post:
+
+
+
+
+To Build: g++ project3.cpp -o project3
+To Execute: ./project3 inputFile outputFile multiplicativeInverseFile mode alpha beta
 */
+
 
 
 void swap(int[26][2], int, int);
