@@ -10,12 +10,17 @@ Submitted By: Nathan Mautz
 GU Username: nmautz
 File Name: project4.cpp
 
+Program will take 1 of 2 paths:
 
+If 2 paramaters are passed it will generate a key and save it into a file.
 
+However if 5 arguments are passed it will transform a given file using a given key and save it in a file.
 
-
-To Build: g++ project3.cpp -o project3
-To Execute: ./project3 inputFile outputFile multiplicativeInverseFile mode alpha beta
+To Build: g++ project4.cpp -o project4
+To Execute: 
+   ./project4 infile outfile keyfile mode
+   OR
+   ./project4 keyfile
 */
 
 
