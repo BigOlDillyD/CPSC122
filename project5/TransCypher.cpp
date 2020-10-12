@@ -7,13 +7,27 @@ TransCypher::TransCypher(char* inputFileName, char* outputFileName, char* keyFil
    this->inputFileName = inputFileName;
    this->outputFileName = outputFileName;
    this->keyFileName = keyFileName;
+
+   readKeyFromFile();
+   if(mode == 1)
+      selectionSort();
+
+}
+
+TransCypher::TransCypher(char* keyFileName)
+{
+   this->keyFileName = keyFileName;
+   key_gen();
+
+
 }
 
 void TransCypher::key_gen()
-{
-   int key[26];
+{ 
+   
+   int tmpKey[26];
    for(int i = 0; i < 26; i++)
-      key[i] = -1;   
+      tmpKey[i] = -1;   
 
    std::srand(time(0));
    for(int i = 0; i < 26; i++)
@@ -23,15 +37,15 @@ void TransCypher::key_gen()
       while(!found)
       {
          int index = std::rand()%26;
-         if(key[index] == -1)
+         if(tmpKey[index] == -1)
          {
-            key[index] = i;
+            tmpKey[index] = i;
             found = true; 
          } 
 
       }
    }
-   arrayToFile();
+   arrayToFile(tmpKey);
 }
 
 void TransCypher::transformFile()
@@ -46,8 +60,10 @@ void TransCypher::transformFile()
    while(fin.peek() != EOF)
    {
       char ch = fin.get();
+
       if(isalpha(ch))
          ch = transform(ch);
+
       fout << ch;
 
 
@@ -62,9 +78,6 @@ char TransCypher::transform(char ch)
 {
    ch = toupper(ch);
    int iCH = ch - 'A';
-   
-   
-
    return (char)(key[iCH][1]+'A');
 
 
@@ -80,10 +93,11 @@ void TransCypher::readKeyFromFile()
    fin.open(keyFileName);
 
    for(int i = 0; i < 26; i++)
-   {
+   { 
+
       fin >> key[i][1-mode];
    } 
-   
+      
    fin.close();
 
 }
@@ -119,28 +133,28 @@ int TransCypher::findSmallest(int arr[26][2], int start)
    return smallest;
 }
 
-void TransCypher::selectionSort(int arr[26][2])
+void TransCypher::selectionSort()
 {
 
    int start = 0;
    
    while(start < 25)
    {
-      int smallest = findSmallest(arr,start);
+      int smallest = findSmallest(key,start);
       if(smallest != start)
-         swap(arr,smallest,start);
+         swap(key,smallest,start);
 
       start++;
    }
 }
 
-void TransCypher::arrayToFile()
+void TransCypher::arrayToFile(int tmpKey[26])
 {
    std::ofstream fout;
    fout.open(keyFileName);
 
    for(int i = 0; i < 26; i++)
-      fout << key[i] << std::endl; 
+      fout << tmpKey[i] << std::endl; 
    fout.close();
 
 }

@@ -10,20 +10,19 @@ class TransCypher
 
    public:
       TransCypher(char*, char*, char*, int);
-       
-      void key_gen();
 
+      TransCypher(char*);
+ 
       void transformFile();
 
-      char transform(char);
-      
-      void readKeyFromFile();
-     
+    
    private:
       
       int key[26][2];
       
       int mode;
+
+      char transform(char);
 
       char* keyFileName;
 
@@ -31,13 +30,17 @@ class TransCypher
       
       char* outputFileName;
 
-      void selectionSort(int[26][2]);
+      void selectionSort();
+     
+      void key_gen();
+
+      void readKeyFromFile();    
 
       void swap(int[26][2], int, int);
 
       int findSmallest(int[26][2], int);
 
-      void arrayToFile();
+      void arrayToFile(int[26]);
      
 };
 
