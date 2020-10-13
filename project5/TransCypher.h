@@ -18,7 +18,7 @@ class TransCypher
     
    private:
       
-      int key[26][2];
+      int key[26];
       
       int mode;
 

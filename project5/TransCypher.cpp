@@ -78,27 +78,13 @@ char TransCypher::transform(char ch)
 {
    ch = toupper(ch);
    int iCH = ch - 'A';
-   return (char)(key[iCH][1]+'A');
+   return (char)(key[iCH] + 'A');
 
 
 }
 
 void TransCypher::readKeyFromFile()
 {
-   for(int i = 0; i < 26; i++)
-      key[i][mode] = i;
-
-
-   std::ifstream fin;
-   fin.open(keyFileName);
-
-   for(int i = 0; i < 26; i++)
-   { 
-
-      fin >> key[i][1-mode];
-   } 
-      
-   fin.close();
 
 }
 
@@ -137,12 +123,12 @@ void TransCypher::selectionSort()
 {
 
    int start = 0;
-   
+   int tmpArr[26];
    while(start < 25)
    {
-      int smallest = findSmallest(key,start);
-      if(smallest != start)
-         swap(key,smallest,start);
+      int smallestInd = findSmallest(key,start);
+      
+      
 
       start++;
    }
