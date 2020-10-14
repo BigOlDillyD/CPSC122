@@ -30,7 +30,7 @@ class TransCypher
       
       char* outputFileName;
 
-      void selectionSort();
+      void sort();
      
       void key_gen();
 
@@ -40,7 +40,7 @@ class TransCypher
 
       int findSmallest(int[26][2], int);
 
-      void arrayToFile(int[26]);
+      void keyToFile();
      
 };
 

@@ -1,5 +1,5 @@
 #include "TransCypher.h"
-
+#include <cstring>
 
 TransCypher::TransCypher(char* inputFileName, char* outputFileName, char* keyFileName, int mode)
 {
@@ -9,25 +9,20 @@ TransCypher::TransCypher(char* inputFileName, char* outputFileName, char* keyFil
    this->keyFileName = keyFileName;
 
    readKeyFromFile();
-   if(mode == 1)
-      selectionSort();
-
 }
 
 TransCypher::TransCypher(char* keyFileName)
 {
    this->keyFileName = keyFileName;
    key_gen();
-
+   keyToFile();
 
 }
 
 void TransCypher::key_gen()
-{ 
-   
-   int tmpKey[26];
+{
    for(int i = 0; i < 26; i++)
-      tmpKey[i] = -1;   
+      key[i] = -1;   
 
    std::srand(time(0));
    for(int i = 0; i < 26; i++)
@@ -37,15 +32,14 @@ void TransCypher::key_gen()
       while(!found)
       {
          int index = std::rand()%26;
-         if(tmpKey[index] == -1)
+         if(key[index] == -1)
          {
-            tmpKey[index] = i;
+            key[index] = i;
             found = true; 
          } 
 
       }
    }
-   arrayToFile(tmpKey);
 }
 
 void TransCypher::transformFile()
@@ -85,7 +79,7 @@ char TransCypher::transform(char ch)
 
 void TransCypher::readKeyFromFile()
 {
-
+   
 }
 
 void TransCypher::swap(int arr[26][2], int a, int b)
@@ -119,29 +113,37 @@ int TransCypher::findSmallest(int arr[26][2], int start)
    return smallest;
 }
 
-void TransCypher::selectionSort()
+void TransCypher::sort()
 {
 
-   int start = 0;
-   int tmpArr[26];
-   while(start < 25)
-   {
-      int smallestInd = findSmallest(key,start);
-      
-      
+   int tmp[26];
+   for(int i = 0; i < 26; i++)
+      tmp[key[i]] = i;
 
-      start++;
-   }
+   std::memcpy(key, tmp, sizeof(key));
+ 
 }
 
-void TransCypher::arrayToFile(int tmpKey[26])
+void TransCypher::keyToFile()
 {
    std::ofstream fout;
    fout.open(keyFileName);
 
    for(int i = 0; i < 26; i++)
-      fout << tmpKey[i] << std::endl; 
+      fout << key[i] << " ";
+
+   fout << std::endl; 
    fout.close();
+
+   sort();
+
+   fout.open(keyFileName, std::ios::app);
+   
+   for(int i = 0; i < 26; i++)
+      fout << key[i] << " ";
+   
+   fout.close();
+
 
 }
 
