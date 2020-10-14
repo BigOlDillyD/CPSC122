@@ -1,6 +1,8 @@
 #include "TransCypher.h"
 #include <cstring>
 
+
+#include <iostream>
 TransCypher::TransCypher(char* inputFileName, char* outputFileName, char* keyFileName, int mode)
 {
    this->mode = mode;
@@ -79,6 +81,32 @@ char TransCypher::transform(char ch)
 
 void TransCypher::readKeyFromFile()
 {
+   std::ifstream fin;
+   fin.open(keyFileName);
+   int a;
+   int count = 0;
+
+   if(mode == 0)
+   {
+      while(count < 26 && fin >> a)
+      {
+         key[count] = a;
+         count++;
+      }
+   }
+   else
+   {
+      while(count < 52 && fin >> a)
+      {
+         if(count >= 26)
+            key[count-26] = a;
+      
+         count++;
+      }
+
+
+   }
+
    
 }
 
