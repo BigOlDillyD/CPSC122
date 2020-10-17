@@ -1,8 +1,14 @@
 #include "TransCypher.h"
 #include <cstring>
 
+/*
+Pre:
 
-#include <iostream>
+All inputs are valid, mode is an in in range 0 - 1.
+
+Post:
+Object is constructed and key is read from file.
+*/
 TransCypher::TransCypher(char* inputFileName, char* outputFileName, char* keyFileName, int mode)
 {
    this->mode = mode;
@@ -13,6 +19,18 @@ TransCypher::TransCypher(char* inputFileName, char* outputFileName, char* keyFil
    readKeyFromFile();
 }
 
+
+/*
+Pre:
+
+keyFileName is valid
+
+Post:
+
+Key is generated and written to file.
+
+*/
+
 TransCypher::TransCypher(char* keyFileName)
 {
    this->keyFileName = keyFileName;
@@ -20,6 +38,16 @@ TransCypher::TransCypher(char* keyFileName)
    keyToFile();
 
 }
+
+
+
+/*
+
+Post:
+
+Key is generated,
+
+*/
 
 void TransCypher::key_gen()
 {
@@ -43,6 +71,16 @@ void TransCypher::key_gen()
       }
    }
 }
+
+
+/*
+Pre: None
+
+Post:
+
+File is transformed using a key and written to a file
+
+*/
 
 void TransCypher::transformFile()
 {
@@ -70,6 +108,15 @@ void TransCypher::transformFile()
    fout.close();
 }
 
+
+
+/*
+Pre: ch is a valid char and is alpha
+
+Post: transformed char is returned
+
+*/
+
 char TransCypher::transform(char ch)
 {
    ch = toupper(ch);
@@ -78,6 +125,16 @@ char TransCypher::transform(char ch)
 
 
 }
+
+
+
+
+/*
+Pre: none
+
+Post: key is read from file and saved in key
+
+*/
 
 void TransCypher::readKeyFromFile()
 {
@@ -110,37 +167,12 @@ void TransCypher::readKeyFromFile()
    
 }
 
-void TransCypher::swap(int arr[26][2], int a, int b)
-{
-   int tmp[2];
-   
-   tmp[0] = arr[a][0];
-   tmp[1] = arr[a][1];
+/*
+Pre: none
 
-   arr[a][0] = arr[b][0];
-   arr[a][1] = arr[b][1];
+Post: Key is sorted
 
-   arr[b][0] = tmp[0];
-   arr[b][1] = tmp[1];
-
-}
-
-int TransCypher::findSmallest(int arr[26][2], int start)
-{
-   int smallest = start;
-   
-   for(int i = start + 1; i < 26; i++)
-   {
-      if(arr[i][0] < arr[smallest][0])
-      {
-         smallest = i;
-
-      }
-
-   }
-   return smallest;
-}
-
+*/
 void TransCypher::sort()
 {
 
@@ -151,7 +183,12 @@ void TransCypher::sort()
    std::memcpy(key, tmp, sizeof(key));
  
 }
+/*
+Pre: none
 
+Post: key is written to file. 
+
+*/
 void TransCypher::keyToFile()
 {
    std::ofstream fout;
