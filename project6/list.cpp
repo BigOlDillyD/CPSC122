@@ -15,6 +15,14 @@ List::List()
 
 List::~List()
 {
+
+   while(head->next != NULL)
+   {
+      node* tmp = head->next;
+      delete head;
+      head = tmp;
+   }
+   delete head;
 }
 
 
@@ -71,11 +79,9 @@ void List::DeleteItemH()
 int List::Find(const itemType item) const
 {
 
-   std::cout << "Length = " << length << std::endl;
    node* tmp = head;
    for(int i = 0; i <= length; i++)
    {
-      std::cout << tmp->item << " " << item << std::endl;
       if(tmp->item == item)
          return i;
       i++;
@@ -85,4 +91,20 @@ int List::Find(const itemType item) const
 
    return -1;
 }
+
+
+void List::Print() const
+{
+   node* tmp = head;
+   while(tmp->next != NULL)
+   {  
+      std::cout << tmp->item << ", ";
+      tmp = tmp->next;
+   }
+
+   std::cout << tmp->item << std::endl;
+}
+
+
+
 

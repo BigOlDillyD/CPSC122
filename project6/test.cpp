@@ -9,9 +9,10 @@ int main(int argc, char** argv)
    list->PutItemH(1);
 
    list->PutItemH(2);
+
+   list->PutItemH(490);
  
-   std::cout << list->Find(1) << std::endl;
- 
+   list->Print(); 
    
    delete list;
 
