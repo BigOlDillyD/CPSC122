@@ -81,7 +81,9 @@ class List
 
  private:
    int length;   //length of the List
-   node* head;   //point to the first node on the list 
+   node* head;   //point to the first node on the list
+   
+   node* GetNode(int index) const; 
 };
 #endif
 

@@ -105,6 +105,43 @@ void List::Print() const
    std::cout << tmp->item << std::endl;
 }
 
+int List::GetLength() const
+{
+   return length;
+}
 
 
+node* List::GetNode(int index) const
+{
+   node* currentNode = head;
+
+   int i = 0;
+
+   while( i != index)
+   {
+      currentNode = currentNode->next;
+      i++;
+   }
+   return currentNode;
+}
+
+
+void List::DeleteItem(const int pos)
+{
+   if(length == 1 || pos == 0)
+   {
+      DeleteItemH();
+      return;
+   }
+   
+   node* toRemove = GetNode(pos);
+   node* before = GetNode(pos-1);
+
+   before->next = toRemove->next;
+
+   delete toRemove;
+
+   length--;
+
+}
 
