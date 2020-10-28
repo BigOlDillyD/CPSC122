@@ -1,12 +1,11 @@
 /*
 Class: CPSC 122-01
 Paul De Palma
-GU Username: depalma
-Submitted By: Paul De Palma
-GU Username: depalma
-File Name: ex32.h
+GU Username: nmautz
+Submitted By: Nathan Maurz
+File Name: list.h
 Header file for a simple linked list  
-To Build: g++ ex32Tst.cpp ex32.cpp 
+To Build: g++ project6Tst.cpp list.cpp 
 To Execute: ./a.out
 */
 
