@@ -1,3 +1,17 @@
+/*
+Class: CPSC 122-01
+Paul De Palma
+GU Username: nmautz
+Submitted By: Nathan Maurz
+File Name: list.cpp
+Implimentation file for a simple linked list  
+To Build: g++ project6Tst.cpp list.cpp 
+To Execute: ./a.out
+*/
+
+
+
+
 #include "list.h"
 #include <iostream>
 
