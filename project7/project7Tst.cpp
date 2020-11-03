@@ -4,20 +4,20 @@
 int main(int argc, char** argv)
 {
 
-   List1 list;
+   List1* list = new List1();
 
-   list.PutItemH(8);
+   list->PutItemH(8);
 
-   list.PutItemH(7);
+   list->PutItemH(7);
 
-   list.PutItemT(9);
+   list->PutItemT(9);
 
-   list.Print();
+   list->Print();
 
-   list.DeleteItemT();
+   list->DeleteItemT();
 
-   list.Print();
+   list->Print();
    
-   std::cout << list.FindItem(atoi(argv[1])) << std::endl;
-
+   std::cout << list->FindItem(atoi(argv[1])) << std::endl;
+   delete list;
 }
