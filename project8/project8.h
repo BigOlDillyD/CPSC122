@@ -85,7 +85,7 @@ class List2
          to put nodes in order is selection sort. 
    */
    void Sort();
-  
+
  private:
    /*
    Comment: Used in conjunction with insert (and, possibly, delete)
