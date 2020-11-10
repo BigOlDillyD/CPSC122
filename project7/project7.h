@@ -1,13 +1,12 @@
 /*
 Class: CPSC 122-01
 Paul De Palma
-GU Username: depalma
-Submitted By: Paul De Palma
-GU Username: depalma
-File Name: ex33.h
+GU Username: nmautz
+Submitted By: Nathan Mautz
+File Name: project7.h
 Header file for a linked list with head and tail pointers  
-To Build: g++ ex33Tst.cpp ex33.cpp 
-To Execute: ./a.out
+To Build: g++ project7Tst.cpp project7.cpp 
+To Execute: ./a.out project7.cpp
 */
 
 
