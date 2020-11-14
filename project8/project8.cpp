@@ -1,11 +1,11 @@
 #include "project8.h"
 #include <iostream>
 
-
-List2::List2()
+template <typename T>
+List2<T>::List2()
 {
 
-   head = new doubleNode();
+   head = new doubleNode<T>();
 
    tail = head;
 
@@ -20,10 +20,10 @@ List2::List2()
 
 
 
-
-List2::List2(List2* lst)
+template <typename T>
+List2<T>::List2(List2<T>* lst)
 {
-   head = new doubleNode();
+   head = new doubleNode<T>();
 
    tail = head;
 
@@ -35,7 +35,7 @@ List2::List2(List2* lst)
 
    for(int i = 0; i < lst->length; i++)
    {
-      doubleNode* tmp = lst->FindPosition(i);
+      doubleNode<T>* tmp = lst->FindPosition(i);
       Insert(tmp->item, i);      
 
    }   
@@ -47,20 +47,21 @@ List2::List2(List2* lst)
 
 
 
-
-List2::~List2()
+template <typename T>
+List2<T>::~List2()
 {
   
    while(head->next != NULL)
    {
-      doubleNode* tmp = head->next;
+      doubleNode<T>* tmp = head->next;
       delete head;
       head = tmp;
    }
    delete head;
 }
 
-void List2::Insert(itemType item, int pos)
+template <typename T>
+void List2<T>::Insert(T item, int pos)
 {
    
    if(length == 0)
@@ -74,7 +75,7 @@ void List2::Insert(itemType item, int pos)
 
    if(pos == length)
    {
-      tail->next = new doubleNode();
+      tail->next = new doubleNode<T>();
       tail->next->prev = tail;
       tail = tail->next;
       tail->item = item;
@@ -85,7 +86,7 @@ void List2::Insert(itemType item, int pos)
 
    if(pos == 0)
    {
-      doubleNode* tmp = new doubleNode();
+      doubleNode<T>* tmp = new doubleNode<T>();
       tmp->next = head;
       tmp->item = item;
       tmp->prev = NULL;
@@ -96,8 +97,8 @@ void List2::Insert(itemType item, int pos)
 
    }
 
-   doubleNode* tmp = FindPosition(pos-1);
-   doubleNode* newNode = new doubleNode();
+   doubleNode<T>* tmp = FindPosition(pos-1);
+   doubleNode<T>* newNode = new doubleNode<T>();
    newNode->prev = tmp;
    newNode->next = tmp->next;
    newNode->item = item;
@@ -106,8 +107,8 @@ void List2::Insert(itemType item, int pos)
    length++;
 }
 
-
-void List2::Delete(int pos)
+template <typename T>
+void List2<T>::Delete(int pos)
 {
    if(length == 1)
    {
@@ -117,7 +118,7 @@ void List2::Delete(int pos)
    
    if(pos == length-1)
    {
-      doubleNode* tmp = tail;
+      doubleNode<T>* tmp = tail;
       
       tail = tail->prev;
 
@@ -132,7 +133,7 @@ void List2::Delete(int pos)
    
    if(pos == 0)
    {
-      doubleNode* tmp = head;
+      doubleNode<T>* tmp = head;
    
       head = head->next;
 
@@ -145,7 +146,7 @@ void List2::Delete(int pos)
       return;
    }
 
-   doubleNode* tmp = FindPosition(pos);
+   doubleNode<T>* tmp = FindPosition(pos);
    
    tmp->next->prev = tmp->prev;
 
@@ -156,10 +157,10 @@ void List2::Delete(int pos)
    length--;
 }
 
-
-void List2::PrintForward()
+template <typename T>
+void List2<T>::PrintForward()
 {
-   doubleNode* tmp = head;
+   doubleNode<T>* tmp = head;
 
    while(tmp->next != NULL)
    {
@@ -172,11 +173,11 @@ void List2::PrintForward()
 }
 
 
-
-doubleNode* List2::FindPosition(int pos)
+template <typename T>
+doubleNode<T>* List2<T>::FindPosition(int pos)
 {
    
-   doubleNode* tmp = head;
+   doubleNode<T>* tmp = head;
    for(int i = 0; i < pos; i++)
    {
       tmp = tmp->next;
@@ -186,4 +187,4 @@ doubleNode* List2::FindPosition(int pos)
 
 }
 
-
+template class List2<int>;

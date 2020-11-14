@@ -5,7 +5,7 @@
 int main()
 {
 
-   List2* lst = new List2();
+   List2<int>* lst = new List2<int>;
 
    lst->Insert(7,0);
    lst->Insert(8,1);
@@ -17,6 +17,6 @@ int main()
    lst->PrintForward();
 
    delete lst;
-
+   return 0;
 }
 
