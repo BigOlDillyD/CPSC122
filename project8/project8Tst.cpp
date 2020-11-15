@@ -10,11 +10,15 @@ int main()
    lst->Insert(7,0);
    lst->Insert(8,1);
    lst->Insert(9,1);
+   lst->Insert(12,1);
+   lst->Insert(29,1);
 
    lst->PrintForward();
-
-   lst->Insert(2,2);
+      
+   lst->Sort();
+   
    lst->PrintForward();
+
 
    delete lst;
    return 0;

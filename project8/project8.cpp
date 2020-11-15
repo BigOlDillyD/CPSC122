@@ -174,6 +174,63 @@ void List2<T>::PrintForward()
 
 
 template <typename T>
+void List2<T>::PrintBackwards()
+{
+
+   doubleNode<T>* tmp = tail;
+   while(tmp->prev != NULL)
+   {
+      std::cout << tmp->item << ", ";
+      tmp = tmp->prev;
+   }
+   std::cout << tmp->item << std::endl;
+}
+
+
+template <typename T>
+void List2<T>::Sort()
+{
+   bool finished = false;
+   int swaps = 0;
+   while(!finished)
+   {
+      for(int i = 0; i < length; i++)
+      {
+         doubleNode<T>* tmp1 = FindPosition(i);
+         doubleNode<T>* tmp2;
+         if(tmp1->next != NULL)
+         {
+            tmp2 = FindPosition(i+1);
+            if(tmp1->item > tmp2->item)
+            {
+               T tmp = tmp2->item;
+               tmp2->item = tmp1->item;
+               tmp1->item = tmp;
+               swaps++;
+            }
+         }
+
+
+      }
+      
+      if(swaps == 0)
+      {
+         finished = true;
+      }else
+      {
+         swaps = 0;
+      }
+
+   }
+
+
+   
+
+}
+
+
+
+template <typename T>
 doubleNode<T>* List2<T>::FindPosition(int pos)
 {
    
@@ -188,3 +245,8 @@ doubleNode<T>* List2<T>::FindPosition(int pos)
 }
 
 template class List2<int>;
+template class List2<float>;
+template class List2<double>;
+template class List2<char>;
+
+
