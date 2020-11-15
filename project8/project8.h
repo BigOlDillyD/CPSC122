@@ -1,13 +1,13 @@
 /*
 Class: CPSC 122-01
 Paul De Palma
+GU Username: nmautz
+Submitted By: Nathan Mautz
 GU Username: depalma
-Submitted By: Paul De Palma
-GU Username: depalma
-File Name: ex34.h
+File Name: project8.h
 Header file for a doubly linked list with dummy notes at head and
 tail to make insertion and deletion easier
-To Build: g++ ex27Tst.cpp ex27.cpp
+To Build: g++ project8Tst.cpp project8.cpp
 To Execute: ./a.out
 */
 
