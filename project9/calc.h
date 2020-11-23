@@ -1,9 +1,9 @@
 /*
 Class: CPSC 122-0X
 Paul De Palma
-GU Username: depalma
-Submitted By: Paul De Palma
-GU Username: depalma
+GU Username: nmautz
+Submitted By: Nathan Mautz
+GU Username: nmautz
 File Name: calc.h
 To Execute: ./calc "(A+B)" 27 32
 */
