@@ -82,13 +82,18 @@ class Calc
  */
   void InFixToPostFix();
 
+  bool CheckToken(char c);   
+
+  void MakeTokenHash();
   
   Stack* stk;      //used for CheckParens, InFixToPostFix, Evaluate 
   char*  inFix;    //null-terminated string that holds infix expression  
   char*  postFix;  //null-terminated string that holds the post-fix
   int*   values;   //pointer to array whose function is described in item 4 of
-                   //of the constructor specs, above. 
-  /*
+                     //of the constructor specs, above. 
+  char*  legalTokens;  
+
+/*
    Note to the intrepid seekers of Pistacchio, described in assignment 9. Everything, so
    far, is necessary for Vaniglia.  You may add here whatever is required to implement
    Pistacchio.  Don't forget the constant to run Vaniglia (0) or Pistacchio (0)
