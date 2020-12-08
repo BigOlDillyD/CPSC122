@@ -4,10 +4,15 @@ using namespace std;
 #include "calc2.h"
 #include <cstring>
 
+
+//#define print(x) std::cout<<x<<std::endl
+#define print(x) 
+
 Calc::Calc(int argcIn, char* argvIn[])
 {
    inFix = new char[strlen(argvIn[1])];
-   strcpy(inFix, argvIn[1]); 
+   strcpy(inFix, argvIn[1]);
+   stk = new Stack(); 
    MakeTokenHash();
    if(!CheckTokens() || !CheckParens())
    {
@@ -15,7 +20,7 @@ Calc::Calc(int argcIn, char* argvIn[])
       exit(EXIT_FAILURE);
    }
    values = new int[26]; 
-   stk = new Stack();
+
   }
 
 Calc::~Calc()
@@ -83,14 +88,17 @@ bool Calc::CheckToken(char c)
 
 bool Calc::CheckParens()
 {
+
    int stkLen = 0;
    
    for(int i = 0; i < strlen(inFix); i++)
    {
+      print(i << inFix[0]);
       if(inFix[i] == '(')
       {
          stk->Push('(');
          stkLen++;
+         print(stk->Peek());
       }
       
       if(inFix[i] == ')')
@@ -110,8 +118,9 @@ bool Calc::CheckParens()
       }
    }
  
-
-   return true;
+   if(stkLen == 0)
+      return true;
+   return false;
 }
 
 void Calc::InFixToPostFix()
