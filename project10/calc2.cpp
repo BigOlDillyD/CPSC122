@@ -5,8 +5,8 @@ using namespace std;
 #include <cstring>
 
 
-//#define print(x) std::cout<<x<<std::endl
-#define print(x) 
+#define print(x) std::cout<<x<<std::endl
+//#define print(x) 
 
 Calc::Calc(int argcIn, char* argvIn[])
 {
@@ -20,8 +20,9 @@ Calc::Calc(int argcIn, char* argvIn[])
       exit(EXIT_FAILURE);
    }
    values = new int[26]; 
-
-  }
+   
+   InFixToPostFix();
+}
 
 Calc::~Calc()
 {
@@ -52,11 +53,6 @@ void Calc::MakeTokenHash()
          legalTokens[c] = (char)i;
          c++;
       }
-
-
-
-
-
 }
 
 
@@ -93,12 +89,12 @@ bool Calc::CheckParens()
    
    for(int i = 0; i < strlen(inFix); i++)
    {
-      print(i << inFix[0]);
+
       if(inFix[i] == '(')
       {
          stk->Push('(');
          stkLen++;
-         print(stk->Peek());
+
       }
       
       if(inFix[i] == ')')
@@ -126,8 +122,92 @@ bool Calc::CheckParens()
 void Calc::InFixToPostFix()
 {
 
+   delete stk;
+   stk = new Stack();
 
-`}
+   int c = 0;
+   int stkLen = 0;
+   for(int i = 0; i < strlen(inFix); i++)
+   {
+     print(i << ": " << strlen(inFix)); 
+     if(IsOperand(inFix[i]))
+      {
+         postFix[c] = inFix[i]; c++;      
+      }
+      else if(inFix[i] == '(')
+      {
+         stk->Push('('); stkLen++;
+      }
+      else if(inFix[i] == ')')
+      {
+         while(stkLen != 0 && stk->Peek() != '(')
+            postFix[c] = stk->Peek(); stk->Pop(); c++; stkLen--;
+         if(stkLen != 0)
+            stk->Pop(); stkLen--;
+      }else
+         Precedence(inFix[i], stkLen, c);
+   }
+}
+
+
+
+
+bool Calc::IsOperand(char c)
+{
+   for(int i = 65; i <= 90; i++)
+   {
+      if(c == (char)i)
+         return true;
+   }
+   
+   return false;
+
+
+}
+
+
+bool Calc::IsOperator(char c)
+{
+   if(c == '+' || c == '-' || c == '*' || c == '/')
+      return true;
+   return false;
+
+}
+
+void Calc::Precedence(char op, int &stkLen, int &c)
+{
+   int value = PrecVal(op);
+   
+   while(stkLen != 0 && value <= PrecVal(stk->Peek()))
+   {
+      postFix[c] = stk->Peek();
+      c++; stk->Pop(); stkLen--;
+   } 
+   
+   stk->Push(op);
+  
+
+}
+
+int Calc::PrecVal(char ch)
+{
+   switch(ch)
+   {
+   case '+':
+   case '-':
+      return 0;
+
+   case '/':
+   case '*':
+      return 1;
+
+   }
+   
+   return -1;
+
+}
+
+
 
 int Calc::Evaluate()
 {
@@ -140,4 +220,9 @@ void Calc::DisplayInFix()
 }
 
 void Calc::DisplayPostFix()
-{}
+{
+
+   std::cout << postFix << std::endl;
+
+}
+

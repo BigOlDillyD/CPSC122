@@ -85,7 +85,15 @@ class Calc
   bool CheckToken(char c);   
 
   void MakeTokenHash();
-  
+ 
+  bool IsOperand(char c);
+
+  bool IsOperator(char c);
+
+  void Precedence(char op, int &stkLen, int &c);
+
+  int  PrecVal(char c);   
+ 
   Stack* stk;      //used for CheckParens, InFixToPostFix, Evaluate 
   char*  inFix;    //null-terminated string that holds infix expression  
   char*  postFix;  //null-terminated string that holds the post-fix
