@@ -39,12 +39,25 @@ void List::DeleteItemH()
 
 int List::GetLength()
 {
- return 
+   node* cur = head;
+   int length = 0;
+   if(cur != NULL)
+   {
+      length++;
+      length = GetLength(cur, length);
+   }  
+   return length;
 }
 
 int List::GetLength(node* cur, int& ct)
 {
- return 0;
+   if(cur->next != NULL)
+   {
+      cur = cur->next;
+      ct++;
+      GetLength(cur,ct);
+   }
+   return ct;
 }
 
 bool List::IsEmpty() 
