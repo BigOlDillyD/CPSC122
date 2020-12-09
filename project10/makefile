@@ -15,5 +15,5 @@ clean :
 run : 
 	./project10 "(A+B)" 77 66
 run2: 
-	./project10 "(A+B/C)" 77 66 77
+	./project10 "(A+B/C)" 1 2 3
 

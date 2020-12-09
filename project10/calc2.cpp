@@ -3,10 +3,10 @@ using namespace std;
 
 #include "calc2.h"
 #include <cstring>
+#include <cstdlib>
 
 
-#define print(x) std::cout<<x<<std::endl
-//#define print(x) 
+
 
 Calc::Calc(int argcIn, char* argvIn[])
 {
@@ -19,7 +19,12 @@ Calc::Calc(int argcIn, char* argvIn[])
       std::cout << "Input Error" << std::endl;
       exit(EXIT_FAILURE);
    }
-   values = new int[26];   
+   values = new int[26];  
+
+   for(int i = 2; i < argcIn; i++)
+      values[i-2] = atoi(argvIn[i]);
+
+ 
    postFix = new char(strlen(inFix)); 
    InFixToPostFix();
 }
@@ -30,7 +35,7 @@ Calc::~Calc()
    delete[] inFix;
    delete[] values;
    delete[] stk;
-
+   delete[] postFix;
 }
 
 
@@ -183,15 +188,6 @@ bool Calc::IsOperand(char c)
 
 }
 
-
-bool Calc::IsOperator(char c)
-{
-   if(c == '+' || c == '-' || c == '*' || c == '/')
-      return true;
-   return false;
-
-}
-
 void Calc::Precedence(char op, int &stkLen, int &c)
 {
 
@@ -232,7 +228,69 @@ int Calc::PrecVal(char ch)
 
 int Calc::Evaluate()
 {
- return 0;
+
+   delete stk;
+   stk = new Stack();
+   int total = 0;
+   int stkLen = 0;
+   int c = 0;
+   for(int i = 0; i < strlen(postFix); i++)
+   {
+      if(IsOperand(postFix[i]))
+      {
+         stk->Push(values[c]); stkLen++;c++;
+      }
+      else if(stkLen >= 2)
+      {
+
+         
+         int num = stk->Peek(); stk->Pop(); stkLen--;
+         int num2 = stk->Peek(); stk->Pop(); stkLen--;
+
+         switch(postFix[i])
+         {
+
+            case '+':
+               total+=(num2+num); 
+               break;
+            case '-':
+               total+=(num2-num);
+               break;
+            case '/':
+               total+=(num2/num);
+               break;      
+            case '*':
+               total+=(num2*num);
+               break;
+         }
+      }
+      else
+      {
+         int num = stk->Peek(); stk->Pop();stkLen--;
+   
+
+         switch(postFix[i])
+         {
+
+            case '+':
+               total+=num;
+               break;
+            case '-':
+               total-=num;
+               break;
+            case '/':
+               total/=num;
+               break;      
+            case '*':
+               total*=num;
+               break;
+         }
+
+      }
+
+   }
+
+   return total;
 }
 
 void Calc::DisplayInFix()
