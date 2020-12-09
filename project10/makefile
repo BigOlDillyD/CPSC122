@@ -13,6 +13,6 @@ list.o : list.cpp list.h
 clean : 
 	rm -f *.o
 run : 
-	./project10 "(A+B)" 77 66
+	make make | ./project10 "(A+B)" 77 66
 run2: 
 	./project10 jibber jab jab

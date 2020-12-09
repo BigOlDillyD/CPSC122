@@ -20,7 +20,7 @@ Calc::Calc(int argcIn, char* argvIn[])
       exit(EXIT_FAILURE);
    }
    values = new int[26]; 
-   
+   DisplayInFix();   
    InFixToPostFix();
 }
 
@@ -132,6 +132,7 @@ void Calc::InFixToPostFix()
      print(i << ": " << strlen(inFix)); 
      if(IsOperand(inFix[i]))
       {
+         print("ran");
          postFix[c] = inFix[i]; c++;      
       }
       else if(inFix[i] == '(')
