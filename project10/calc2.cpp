@@ -19,8 +19,8 @@ Calc::Calc(int argcIn, char* argvIn[])
       std::cout << "Input Error" << std::endl;
       exit(EXIT_FAILURE);
    }
-   values = new int[26]; 
-   DisplayInFix();   
+   values = new int[26];   
+   postFix = new char(strlen(inFix)); 
    InFixToPostFix();
 }
 
@@ -129,10 +129,9 @@ void Calc::InFixToPostFix()
    int stkLen = 0;
    for(int i = 0; i < strlen(inFix); i++)
    {
-     print(i << ": " << strlen(inFix)); 
+
      if(IsOperand(inFix[i]))
       {
-         print("ran");
          postFix[c] = inFix[i]; c++;      
       }
       else if(inFix[i] == '(')
@@ -142,9 +141,13 @@ void Calc::InFixToPostFix()
       else if(inFix[i] == ')')
       {
          while(stkLen != 0 && stk->Peek() != '(')
+         {
             postFix[c] = stk->Peek(); stk->Pop(); c++; stkLen--;
+         }
          if(stkLen != 0)
+         {
             stk->Pop(); stkLen--;
+         }
       }else
          Precedence(inFix[i], stkLen, c);
    }
@@ -178,7 +181,7 @@ bool Calc::IsOperator(char c)
 void Calc::Precedence(char op, int &stkLen, int &c)
 {
    int value = PrecVal(op);
-   
+   print("Value = " << value); 
    while(stkLen != 0 && value <= PrecVal(stk->Peek()))
    {
       postFix[c] = stk->Peek();
