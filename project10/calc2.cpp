@@ -129,7 +129,6 @@ void Calc::InFixToPostFix()
    int stkLen = 0;
    for(int i = 0; i < strlen(inFix); i++)
    {
-
      if(IsOperand(inFix[i]))
       {
          postFix[c] = inFix[i]; c++;      
@@ -180,6 +179,8 @@ bool Calc::IsOperator(char c)
 
 void Calc::Precedence(char op, int &stkLen, int &c)
 {
+
+print(op);
    int value = PrecVal(op);
    print("Value = " << value); 
    while(stkLen != 0 && value <= PrecVal(stk->Peek()))
