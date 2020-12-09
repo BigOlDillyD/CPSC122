@@ -3,8 +3,6 @@ using namespace std;
 
 #include "list.h"
 
-#define print(x) std::cout<< x << std::endl
-
 //Non-recursive functions. I have written them for you.
 List::List()
 {
@@ -128,9 +126,16 @@ void List::PrintR(node* cur)
 
 List::~List()
 {
-   node* tmp = head;
-   head = head->next;
-   delete tmp;
-   print("Deleted");
-   List::~List();
+   if(head->next != NULL)
+   {
+   
+      node* tmp = head;
+      head = head->next;
+      delete tmp;
+      this->~List();
+   }
+   else
+   {  
+      delete head;
+   }
 }
