@@ -62,15 +62,33 @@ int List::GetLength(node* cur, int& ct)
 
 bool List::IsEmpty() 
 {
- return true; 
+   return head == NULL; 
 }
 
 void List::Print( )
 {
+
+   node* cur = head;
+   if(!IsEmpty())
+   {
+      Print(cur);
+   } 
+
+
 }
 
 void List::Print(node* cur) 
 {
+   if(cur->next != NULL)
+   {
+      std::cout << cur->item << ", ";
+      cur = cur->next;
+      Print(cur);
+   }else
+   {
+      std::cout << cur->item << std::endl;
+   }
+
 }
 
 void List::PrintR( )

@@ -10,8 +10,6 @@ int main(int argc, char** argv)
  for (int i = 0; i < atoi(argv[1]); i++)
   lst1->PutItemH(i);
 
- print(lst1->GetLength()); 
-
  lst1->Print();
 
  lst1->PrintR();
