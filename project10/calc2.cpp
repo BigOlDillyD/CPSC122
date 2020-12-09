@@ -14,7 +14,7 @@ Calc::Calc(int argcIn, char* argvIn[])
    strcpy(inFix, argvIn[1]);
    stk = new Stack(); 
    MakeTokenHash();
-   if(!CheckTokens() || !CheckParens())
+   if(!CheckTokens() && !CheckParens())
    {
       std::cout << "Input Error" << std::endl;
       exit(EXIT_FAILURE);
@@ -129,27 +129,40 @@ void Calc::InFixToPostFix()
    int stkLen = 0;
    for(int i = 0; i < strlen(inFix); i++)
    {
-     if(IsOperand(inFix[i]))
+      if(IsOperand(inFix[i]))
       {
          postFix[c] = inFix[i]; c++;      
       }
       else if(inFix[i] == '(')
       {
-         stk->Push('('); stkLen++;
+         stk->Push('('); stkLen++; 
       }
       else if(inFix[i] == ')')
       {
-         while(stkLen != 0 && stk->Peek() != '(')
+         while(stkLen != 0 && (char)stk->Peek() != '(')
          {
-            postFix[c] = stk->Peek(); stk->Pop(); c++; stkLen--;
+            postFix[c] = (char)stk->Peek(); stk->Pop(); c++; stkLen--;
+
+
          }
          if(stkLen != 0)
          {
             stk->Pop(); stkLen--;
          }
-      }else
+      }
+      else
+      {
+
          Precedence(inFix[i], stkLen, c);
+      }
    }
+
+   while(stkLen != 0)
+   {
+
+      postFix[c] = stk->Peek(); c++; stk->Pop(); stkLen--;
+   }
+
 }
 
 
@@ -159,6 +172,8 @@ bool Calc::IsOperand(char c)
 {
    for(int i = 65; i <= 90; i++)
    {
+
+
       if(c == (char)i)
          return true;
    }
@@ -180,17 +195,18 @@ bool Calc::IsOperator(char c)
 void Calc::Precedence(char op, int &stkLen, int &c)
 {
 
-print(op);
+
    int value = PrecVal(op);
-   print("Value = " << value); 
-   while(stkLen != 0 && value <= PrecVal(stk->Peek()))
+
+   while(stkLen != 0 && value <= PrecVal((char)stk->Peek()))
    {
-      postFix[c] = stk->Peek();
+
+      postFix[c] = (char)stk->Peek();
       c++; stk->Pop(); stkLen--;
    } 
    
    stk->Push(op);
-  
+   stkLen++; 
 
 }
 
