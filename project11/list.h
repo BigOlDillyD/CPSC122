@@ -1,8 +1,8 @@
 /*
 Class: CPSC 122-01
 Paul De Palma
-GU Username: depalma
-Submitted By: Paul De Palma
+GU Username: Nathan
+Submitted By: Nathan Mautz
 GU Username: depalma
 File Name: list.h
 Header file for a simple linked list that adds and deletes at the head
